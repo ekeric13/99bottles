@@ -1,5 +1,3 @@
-# finished in 22.5 minutes
-
 class Bottles
 
   def song
@@ -7,8 +5,6 @@ class Bottles
   end
 
   def verses(to, from)
-    # loop from "to" to "from"
-      # calculate verse
     verse_arr = to.downto(from).map do |num|
       verse(num)
     end
@@ -17,32 +13,38 @@ class Bottles
 
   def verse(num)
     if num == 0
-      return zero_edge_case
+      return zero_case
+    elsif num == 1
+      return one_case
+    elsif num == 2
+      return two_case
+    else
+      return generic_case(num)
     end
-    final_text = get_final_text(num)
-   return "#{num_bottles(num)} of beer on the wall, " +
-    "#{num_bottles(num)} of beer.\n" +    
-    final_text
   end
 
-  def num_bottles(num)
-    if num == 1
-      return "1 bottle"
-    end
-    return "#{num} bottles"
+  def generic_case(num)
+    "#{num} bottles of beer on the wall, " +
+    "#{num} bottles of beer.\n" +    
+    "Take one down and pass it around, " +
+    "#{num - 1} bottles of beer on the wall.\n"
   end
 
-  def get_final_text(num)
-    num_left = num - 1
-    if num_left == 0
-      return "Take it down and pass it around, " + 
-      "no more bottles of beer on the wall.\n"
-    end
-    return "Take one down and pass it around, " +
-    "#{num_bottles(num_left)} of beer on the wall.\n"
+  def two_case
+    "2 bottles of beer on the wall, " +
+    "2 bottles of beer.\n" +  
+    "Take one down and pass it around, " + 
+    "1 bottle of beer on the wall.\n"  
   end
 
-  def zero_edge_case
+  def one_case
+    "1 bottle of beer on the wall, " +
+    "1 bottle of beer.\n" +  
+    "Take it down and pass it around, " + 
+    "no more bottles of beer on the wall.\n"  
+  end
+
+  def zero_case
     "No more bottles of beer on the wall, " +
     "no more bottles of beer.\n" +
     "Go to the store and buy some more, " +

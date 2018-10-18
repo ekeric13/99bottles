@@ -1,6 +1,3 @@
-# finished in 22.5 minutes
-# too concretely abstract... :(
-
 class Bottles
 
   def song
@@ -17,11 +14,13 @@ class Bottles
   def verse(num)
     if num == 0
       return zero_edge_case
+    elsif num == 1
+      return one_edge_case
     end
-    final_text = get_final_text(num)
    return "#{num_bottles(num)} of beer on the wall, " +
     "#{num_bottles(num)} of beer.\n" +    
-    final_text
+    "Take one down and pass it around, " +
+    "#{num_bottles(num - 1)} of beer on the wall.\n"
   end
 
   def num_bottles(num)
@@ -31,14 +30,11 @@ class Bottles
     return "#{num} bottles"
   end
 
-  def get_final_text(num)
-    num_left = num - 1
-    if num_left == 0
-      return "Take it down and pass it around, " + 
-      "no more bottles of beer on the wall.\n"
-    end
-    return "Take one down and pass it around, " +
-    "#{num_bottles(num_left)} of beer on the wall.\n"
+  def one_edge_case
+    "1 bottle of beer on the wall, " +
+    "1 bottle of beer.\n" +  
+    "Take it down and pass it around, " + 
+    "no more bottles of beer on the wall.\n"  
   end
 
   def zero_edge_case
